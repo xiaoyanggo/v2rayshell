@@ -24,20 +24,21 @@ email="- CF_API_EMAIL=l2690329987@gmail.com"
 value="- CF_API_KEY=790a5ab094267d77f740e17aab0f21646f625"
 #授权密钥
 key='    "license_key": "LP+BAwEBB0xpY2Vuc2UB/4IAAQMBBERhdGEBCgABAVIB/4QAAQFTAf+EAAAACv+DBQEC/4YAAAD/2f+CAW57Ikhvc3RNZDUiOiI2MzkxRkFDQzcyMTcyODMxOTY1QzM5MEJBNTExRDVDOCIsIkVuZCI6IjIwMjEtMDItMjZUMjI6Mzc6NTQuNjY1MTk2KzA4OjAwIiwiSXNXSE1DU0xpY2Vuc2UiOmZhbHNlfQExAhS09FXSdZhsZXPTdALlhBzbPfmFUdsVkGdDXDw5UUMr7UeBaFYkEd6uUbQ+ueLivQExAk9Z5c6cbuvtdIf/mEpN1Ju8mZj8LNplLm97rx1mV14loMwJPySUR5du8yItdX4bZwA=",'
-apt-get install -y ntp
-service ntp restart
+
 
 pName=$(rpm -qa | grep docker)
 if [ $? -eq 0 ]
 then
         echo $xi;
 else
-	yum clean all
-	yum install docker-ce
-	wget https://download.docker.com/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
-        yum install -y  containerd.io-1.2.6-3.3.el7.x86_64.rpm
-	yum clean all
-	yum install docker-ce
+		apt-get install -y ntp
+		service ntp restart
+		yum clean all
+		yum install docker-ce
+		wget https://download.docker.com/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+		yum install -y  containerd.io-1.2.6-3.3.el7.x86_64.rpm
+		yum clean all
+		yum install docker-ce
         curl -fsSL https://get.docker.com | bash
         curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         chmod a+x /usr/local/bin/docker-compose
