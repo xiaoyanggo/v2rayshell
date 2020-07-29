@@ -33,15 +33,12 @@ then
 else
 		apt-get install -y ntp
 		service ntp restart
-		#yum clean all
-		#yum install docker-ce
-		#wget https://download.docker.com/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
-		#yum install -y  containerd.io-1.2.6-3.3.el7.x86_64.rpm
-		#yum clean all
-		#yum install docker-ce
-		yum install --setopt=obsoletes=0 \
-		docker-ce-17.03.2.ce-1.el7.centos.x86_64 \
-		docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch # on a new system with yum repo defined, forcing older version and ignoring obsoletes introduced by 17.06.0
+		yum clean all
+		yum install docker-ce
+		wget https://download.docker.com/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+		yum install -y  containerd.io-1.2.6-3.3.el7.x86_64.rpm
+		yum clean all
+		yum install docker-ce
         curl -fsSL https://get.docker.com | bash
         curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         chmod a+x /usr/local/bin/docker-compose
