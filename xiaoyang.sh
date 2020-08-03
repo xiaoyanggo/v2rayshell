@@ -50,7 +50,7 @@ yum install -y git 2> /dev/null || apt install git
 #fi
 
 if [ ! -d "/root/v2ray-poseidon" ]; then
-"xiaoyangzengqiang.sh.sh" 121L, 3937C
+"xiaoyang.sh" 121L, 3937C
                 sed -i "/\"checkRate\": 60,/ a\\$domain" config.json
                 sed -i '/"panelKey":/d' config.json
                 sed -i "8a\    $mukey" config.json
