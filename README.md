@@ -1,14 +1,46 @@
 # v2rayshell
 
-###v2ray p版本脚本：
+## v2ray p版本脚本：
 
     wget --no-check-certificate -O xiaoyangzengqiang.sh https://raw.githubusercontent.com/xiaoyanggo/v2rayshell/master/xiaoyangzengqiang.sh && chmod +x xiaoyangzengqiang.sh && ./xiaoyangzengqiang.sh
 
-###v2ray rico版本
+## v2ray rico版本
 
     mkdir v2ray-agent  &&   cd v2ray-agent && curl https://raw.githubusercontent.com/xiaoyanggo/v2rayshell/master/v2xy.sh -o v2xy.sh &&  chmod +x v2xy.sh &&  bash v2xy.sh
+## rico 版本 docker 对接：
+    #添加节点
+    地址;端口;2;ws;;path=/img|host=域名
+    #安装加速
+    yum -y install wget
+    wget -N --no-check-certificate "https://github.000060000.xyz/tcpx.sh" && chmod +x tcpx.sh && ./tcpx.sh
+    #同步时间关闭防火墙
+    yum -y install ntpdate
+    timedatectl set-timezone Asia/Shanghai
+    ntpdate ntp1.aliyun.com
+    systemctl disable firewalld
+    systemctl stop firewalld
+    #安装Docker容器
+    curl -fsSL https://get.docker.com | bash
+    curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod a+x /usr/local/bin/docker-compose
+    rm -f which dc 
+    ln -s /usr/local/bin/docker-compose /usr/bin/dc
+    #启动docker容器
+    systemctl start docker
+    service docker start
+    systemctl enable docker.service
+    systemctl status docker.service
+    #运行docker镜像
+    #破解rico授权版本
+    docker run -d --name=镜像 -e speedtest=0  -e api_port=2333 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 -e CacheDurationSec=120 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always woaizyg/rico-free:v2ray
+    docker run -d --name=镜像 -e speedtest=0 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always woaizyg/rico-free:v2ray
+    #无名版本
+    docker run -d --name=镜像 -e speedtest=0  -e api_port=2333 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 -e CacheDurationSec=120 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always yduj9e/hef:4.25.0-beta2
+    #狐狸sang版本
+    docker run -d --name=镜像 -e speedtest=0  -e api_port=2333 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 -e CacheDurationSec=120 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always hulisang/v2ray_v3:go_dev  
 
-####自己测试：
+
+###自己测试：
 
     tls CF 模式 ： ces.yhy.design;;16;tls;ws;path=/v2ray|host=ces.yhy.design 
 
