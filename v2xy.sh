@@ -9,10 +9,10 @@ red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
-software=(Docker_Caddy Docker_Caddy_cloudflare Docker)
-operation=(install update_config update_image logs)
+software=(TLS模式CADDY版 TLS模式 CF版 普通模式)
+operation=(部署 升级脚本 更新镜像 日志)
 # 确保只有root才能运行我们的脚本
-[[ $EUID -ne 0 ]] && echo -e "[${red}Error${plain}] This script must be run as root!" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "[${red}Error${plain}] 该脚本必须以root身份运行！" && exit 1
 
 #检查系统
 check_sys(){
@@ -366,14 +366,14 @@ install_select(){
         break
         ;;
         *)
-        echo -e "[${red}Error${plain}] Please only enter a number [1-4]"
+        echo -e "[${red}Error${plain}] 请只输入一个数字 [1-4]"
         ;;
     esac
     done
 }
 install_dependencies(){
     if check_sys packageManager yum; then
-        echo -e "[${green}Info${plain}] Checking the EPEL repository..."
+        echo -e "[${green}Info${plain}] 正在检查EPEL储存库..."
         if [ ! -f /etc/yum.repos.d/epel.repo ]; then
             yum install -y epel-release > /dev/null 2>&1
         fi
@@ -397,18 +397,18 @@ install_dependencies(){
             error_detect_depends "apt-get -y install ${depend}"
         done
     fi
-    echo -e "[${green}Info${plain}] Setting TimeZone to Shanghai"
+    echo -e "[${green}Info${plain}] 将时区设置为上海"
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     date -s "$(curl -sI g.cn | grep Date | cut -d' ' -f3-6)Z"
 
 }
 #update_image
 update_image_v2ray(){
-    echo "Shut down the current service"
+    echo "关闭当前服务"
     docker-compose down
-    echo "Pulling Images"
+    echo "拉取镜像"
     docker-compose pull
-    echo "Start Service"
+    echo "启动服务"
     docker-compose up -d
 }
 
@@ -479,23 +479,23 @@ install_v2ray(){
 clear
 while true
 do
-echo  "Which operation you'd select:"
+echo  "您选择的操作："
 for ((i=1;i<=${#operation[@]};i++ )); do
     hint="${operation[$i-1]}"
     echo -e "${green}${i}${plain}) ${hint}"
 done
-read -p "Please enter a number (Default ${operation[0]}):" selected
+read -p "请输入一个数字 (默认 ${operation[0]}):" selected
 [ -z "${selected}" ] && selected="1"
 case "${selected}" in
     1|2|3|4)
     echo
-    echo "You choose = ${operation[${selected}-1]}"
+    echo "你选择的是 = ${operation[${selected}-1]}"
     echo
     ${operation[${selected}-1]}_v2ray
     break
     ;;
     *)
-    echo -e "[${red}Error${plain}] Please only enter a number [1-4]"
+    echo -e "[${red}Error${plain}] 请只输入一个数字 [1-4]"
     ;;
 esac
 done
