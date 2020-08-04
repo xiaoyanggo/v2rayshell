@@ -9,8 +9,8 @@ red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
-software=(TLS模式CADDY版 TLS模式 CF版 普通模式)
-operation=(部署 升级脚本 更新镜像 日志)
+software=(Docker_Caddy Docker_Caddy_cloudflare Docker)
+operation=(install update_config update_image logs)
 # 确保只有root才能运行我们的脚本
 [[ $EUID -ne 0 ]] && echo -e "[${red}Error${plain}] 该脚本必须以root身份运行！" && exit 1
 
