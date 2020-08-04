@@ -2,7 +2,7 @@ version: '2'
 
 services:
   v2ray:
-    image: woaizyg/rico-free:v2ray
+    image: xiaoyang12/woaixy:latest
     restart: always
     network_mode: "host"
     extra_hosts:
@@ -34,11 +34,11 @@ services:
         max-file: "3"
 
   caddy:
-    image: woaizyg/rico-free:caddy
+    image: xiaoyang12/woaixy:caddy
     restart: always
     environment:
       - ACME_AGREE=true
-#      if u want to use cloudflare (for DNS challenge authentication)
+#      if u want to use cloudflare (for DNS challenge authentication)  rico-free:v2ray    woaizyg/rico-free:caddy
 #      - CLOUDFLARE_EMAIL=xxxxxx@out.look.com
 #      - CLOUDFLARE_API_KEY=xxxxxxx
       - V2RAY_DOMAIN=xxxx.com
