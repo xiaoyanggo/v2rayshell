@@ -32,8 +32,8 @@
     systemctl status docker.service
     #运行docker镜像
     #破解rico授权版本
-    docker run -d --name=镜像 -e speedtest=0  -e api_port=2333 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 -e CacheDurationSec=120 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always woaizyg/rico-free:v2ray
-    docker run -d --name=镜像 -e speedtest=0 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always woaizyg/rico-free:v2ray
+    docker run -d --name=镜像 -e speedtest=0  -e api_port=2333 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 -e CacheDurationSec=120 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always xiaoyang12/woaixy:latest
+    docker run -d --name=镜像 -e speedtest=0 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always xiaoyang12/woaixy:latest
     #无名版本
     docker run -d --name=镜像 -e speedtest=0  -e api_port=2333 -e usemysql=0 -e downWithPanel=0 -e node_id=节点ID -e sspanel_url=域名 -e key=密码 -e CacheDurationSec=120 --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always yduj9e/hef:4.25.0-beta2
     #狐狸sang版本
