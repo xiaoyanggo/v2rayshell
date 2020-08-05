@@ -42,9 +42,9 @@
 
 ###自己测试：
 
-    tls CF 模式 ： ces.yhy.design;;16;tls;ws;path=/v2ray|host=ces.yhy.design 
-
-    tls caddy模式 ：ces.yhy.design;;16;tls;ws;path=/v2ray|host=ces.yhy.design  
+    tls CF 模式 ：域名或者ip;;1;tls;ws;path=/v2ray|host=域名或者ip    #脚本对接
+    tls caddy模式 ：域名或者ip;;1;tls;ws;path=/v2ray|host=域名或者ip  #脚本对接
+    ws模式：  地址;端口;2;ws;;path=/img|host=域名    #docker破解rico第二个
 ------------------------------------------------
 >*TCP 示例，请注意后面有两个分号*
 >>非CDN域名或者ip;非0;2;tcp;;
