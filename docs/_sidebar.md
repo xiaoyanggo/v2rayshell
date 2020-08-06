@@ -1,7 +1,11 @@
-- v2ray-poseidon
+- 前言
 
-  - [一键脚本](v2ray-poseidon/jiaoben.md)
-  - [面板填写](v2ray-poseidon/readnode.md)
+  - [介绍](/README.md)
 
-- rico
+- 开始使用
+
+  - [一、v2ray-poseidon](v2ray-poseidon/readnode.md)
+  - [二、rico](rico/rico.md)
+
+
 

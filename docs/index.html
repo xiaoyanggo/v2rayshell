@@ -7,19 +7,86 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="./css/my.css"> 
+
 </head>
 <body>
+
   <div  id="app">加载中</div>
   <script>
+
     window.$docsify = {
      
-      name: '',
-      repo: '',
+      name: 'SSPANEL V2RAY后端',
+      repo: 'https://github.com/xiaoyanggo',
       loadSidebar: true,
-      coverpage: true
+      
+      auto2top: true,
+      logo: '',
+      nameLink: '/',
+      topMargin: 0, // default: 0
+      mergeNavbar: true,
+      maxLevel: 4,
+      subMaxLevel: 2,
+       el: '#app',
+      
+      cornerExternalLinkTarget: '_self', // default: '_blank'
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+
+
+      formatUpdated: function(time) {
+    // ...
+
+          return time;
+  },
+
+
+   
+      copyCode: {
+          buttonText : '复制到剪贴板',
+          errorText  : '错误',
+          successText: '复制'
+      },
+      pagination: {
+          previousText: '上一章节',
+          nextText: '下一章节',
+          crossChapter: true,
+          crossChapterText: true,
+      },
+      count:{
+          countable:true,
+          fontsize:'0.9em',
+          color:'rgb(90,90,90)',
+          language:'chinese'
+  },
+      tabs: {
+        persist    : true,      // default
+        sync       : true,      // default
+        theme      : 'classic', // default
+        tabComments: true,      // default
+        tabHeadings: true       // default
+  }
+
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-   
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+  <!-- docsify (latest v4.x.x)-->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- docsify-tabs (latest v1.x.x) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <style>
+  :root {
+    --docsifytabs-border-color: #ededed;
+    --docsifytabs-tab-highlight-color: purple;
+   }
+</style>
+
 </body>
 </html>
