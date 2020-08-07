@@ -33,6 +33,9 @@ then
 else
 		apt-get install -y ntp
 		service ntp restart
+		yum -y install ntpdate
+		timedatectl set-timezone Asia/Shanghai
+		ntpdate ntp1.aliyun.com
 		yum clean all
 		yum install docker-ce
 		wget https://download.docker.com/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
@@ -90,6 +93,8 @@ case $xuan in
 		#tcp模式
 		read -p "  2.tcp端口：" port
 		port1='     - "'$port':'$port'"'
+		     22     "port": 20202,
+		port2='    "port": '$port','
 		cd /root/v2ray-poseidon/docker/sspanel/tcp
 		sed -i '/license_key/d' config.json
 		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
@@ -99,6 +104,8 @@ case $xuan in
 		sed -i "8a\    $mukey" config.json
 		sed -i '/\"nodeId\":/d' config.json
 		sed -i "4a \    $rid" config.json
+		sed -i '22d' config.json
+		sed -i "21a \ $port2" config.json
 		sed -i '9d' docker-compose.yml
 		sed -i "8a \ $port1" docker-compose.yml
 		service docker restart
