@@ -93,7 +93,6 @@ case $xuan in
 		#tcp模式
 		read -p "  2.tcp端口：" port
 		port1='     - "'$port':'$port'"'
-		     22     "port": 20202,
 		port2='    "port": '$port','
 		cd /root/v2ray-poseidon/docker/sspanel/tcp
 		sed -i '/license_key/d' config.json
