@@ -31,8 +31,6 @@ if [ $? -eq 0 ]
 then
         echo $xi;
 else
-		apt-get install -y ntp
-		service ntp restart
 		yum -y install ntpdate
 		timedatectl set-timezone Asia/Shanghai
 		ntpdate ntp1.aliyun.com
