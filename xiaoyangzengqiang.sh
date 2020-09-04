@@ -82,8 +82,8 @@ case $xuan in
 		sed -i "/-\ CF_Key=/d" docker-compose.yml
 		sed -i "28a \      $value" docker-compose.yml
 		sed -i "28a \      $email" docker-compose.yml
-		sed -i "/command:\ tls\ cloudflare/d" docker-compose.yml
-		sed -i "27a \    $cf1" docker-compose.yml
+		sed -i "/-\ CERT_\DOMAIN/d" docker-compose.yml
+		sed -i "25a \    $cf1" docker-compose.yml
 		service docker restart
 		dc up -d
 		;;
