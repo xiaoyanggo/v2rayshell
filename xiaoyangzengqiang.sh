@@ -80,8 +80,8 @@ case $xuan in
 		sed -i "4a \    $rid" config.json
 		sed -i "/-\ CF_Email=/d" docker-compose.yml
 		sed -i "/-\ CF_Key=/d" docker-compose.yml
-		sed -i "28a \      $value" docker-compose.yml
-		sed -i "28a \      $email" docker-compose.yml
+		sed -i "27a \      $value" docker-compose.yml
+		sed -i "27a \      $email" docker-compose.yml
 		sed -i "/-\ CERT_\DOMAIN/d" docker-compose.yml
 		sed -i "25a \      $cf1" docker-compose.yml
 		service docker restart
