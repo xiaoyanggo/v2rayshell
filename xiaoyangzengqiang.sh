@@ -124,6 +124,7 @@ case $xuan in
 		;;
 esac
 systemctl stop firewalld.service
+ufw disable
 
 
 
