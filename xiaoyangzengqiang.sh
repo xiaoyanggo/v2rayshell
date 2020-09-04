@@ -68,7 +68,7 @@ case $xuan in
 	1)
 		#ws-tls模式
 		read -p "  2.CF上面解析的域名：" cf
-		cf1="- CERT_DOMAIN= "$cf
+		cf1="- CERT_DOMAIN="$cf
 		cd /root/v2ray-poseidon/docker/sspanel/ws-tls/
 		sed -i '/license_key/d' config.json
 		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
@@ -83,7 +83,7 @@ case $xuan in
 		sed -i "28a \      $value" docker-compose.yml
 		sed -i "28a \      $email" docker-compose.yml
 		sed -i "/-\ CERT_\DOMAIN/d" docker-compose.yml
-		sed -i "25a \    $cf1" docker-compose.yml
+		sed -i "25a \      $cf1" docker-compose.yml
 		service docker restart
 		dc up -d
 		;;
