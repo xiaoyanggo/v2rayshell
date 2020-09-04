@@ -19,9 +19,9 @@ mukey='"panelKey": "xiaoyang",'
 read -p "  1.面板里添加完节点后生成的自增ID:" sid
 rid='"nodeId": '$sid','
 #cloudflare 邮箱
-email="- CF_API_EMAIL=l2690329987@gmail.com"
+email="- CF_Email=l2690329987@gmail.com"
 #cloudflare密钥
-value="- CF_API_KEY=790a5ab094267d77f740e17aab0f21646f625"
+value="- CF_Key=790a5ab094267d77f740e17aab0f21646f625"
 #授权密钥
 key='    "license_key": "LP+BAwEBB0xpY2Vuc2UB/4IAAQMBBERhdGEBCgABAVIB/4QAAQFTAf+EAAAACv+DBQEC/4YAAAD/2f+CAW57Ikhvc3RNZDUiOiI2MzkxRkFDQzcyMTcyODMxOTY1QzM5MEJBNTExRDVDOCIsIkVuZCI6IjIwMjEtMDItMjZUMjI6Mzc6NTQuNjY1MTk2KzA4OjAwIiwiSXNXSE1DU0xpY2Vuc2UiOmZhbHNlfQExAhS09FXSdZhsZXPTdALlhBzbPfmFUdsVkGdDXDw5UUMr7UeBaFYkEd6uUbQ+ueLivQExAk9Z5c6cbuvtdIf/mEpN1Ju8mZj8LNplLm97rx1mV14loMwJPySUR5du8yItdX4bZwA=",'
 
@@ -68,7 +68,7 @@ case $xuan in
 	1)
 		#ws-tls模式
 		read -p "  2.CF上面解析的域名：" cf
-		cf1="command: tls cloudflare "$cf
+		cf1="- CERT_DOMAIN= "$cf
 		cd /root/v2ray-poseidon/docker/sspanel/ws-tls/
 		sed -i '/license_key/d' config.json
 		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
@@ -78,10 +78,10 @@ case $xuan in
 		sed -i "8a\    $mukey" config.json
 		sed -i '/\"nodeId\":/d' config.json
 		sed -i "4a \    $rid" config.json
-		sed -i "/-\ CF_API_EMAIL=/d" docker-compose.yml
-		sed -i "/-\ CF_API_KEY=/d" docker-compose.yml
-		sed -i "19a \      $value" docker-compose.yml
-		sed -i "19a \      $email" docker-compose.yml
+		sed -i "/-\ CF_Email=/d" docker-compose.yml
+		sed -i "/-\ CF_Key=/d" docker-compose.yml
+		sed -i "28a \      $value" docker-compose.yml
+		sed -i "28a \      $email" docker-compose.yml
 		sed -i "/command:\ tls\ cloudflare/d" docker-compose.yml
 		sed -i "27a \    $cf1" docker-compose.yml
 		service docker restart
