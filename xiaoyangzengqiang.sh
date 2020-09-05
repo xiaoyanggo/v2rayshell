@@ -7,8 +7,9 @@ echo && echo -e " sspanel v2ray一键对接脚本 ${Red_font_prefix}[v${sh_ver}]
  ${Green_font_prefix}1.${Font_color_suffix} WS-TLS模式(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)
  ${Green_font_prefix}2.${Font_color_suffix} TCP模式(前端面板格式：你的IP或域名;10086;2;tcp;;)
  ${Green_font_prefix}3.${Font_color_suffix} CDN模式(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)
+ ${Green_font_prefix}4.${Font_color_suffix} 加速脚本安装(推荐使用BBR2或BBRPlus)
 ————————————————————————————————" && echo
-read -p "请选择对接模式(1,2,3)：" xuan
+read -p "请选择对接模式(1,2,3,4)：" xuan
 xi=" "
 xi2=" "
 #网站地址
@@ -25,26 +26,40 @@ value="- CF_Key=790a5ab094267d77f740e17aab0f21646f625"
 #授权密钥
 key='    "license_key": "LP+BAwEBB0xpY2Vuc2UB/4IAAQMBBERhdGEBCgABAVIB/4QAAQFTAf+EAAAACv+DBQEC/4YAAAD/2f+CAW57Ikhvc3RNZDUiOiI2MzkxRkFDQzcyMTcyODMxOTY1QzM5MEJBNTExRDVDOCIsIkVuZCI6IjIwMjEtMDItMjZUMjI6Mzc6NTQuNjY1MTk2KzA4OjAwIiwiSXNXSE1DU0xpY2Vuc2UiOmZhbHNlfQExAhS09FXSdZhsZXPTdALlhBzbPfmFUdsVkGdDXDw5UUMr7UeBaFYkEd6uUbQ+ueLivQExAk9Z5c6cbuvtdIf/mEpN1Ju8mZj8LNplLm97rx1mV14loMwJPySUR5du8yItdX4bZwA=",'
 
+#判断系统
+os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+if [ "$os" == '"CentOS Linux"' ] ;
+then
+        echo "您的系统是"${os}"，开始进入脚本："
+        yum -y install ntpdate
+		timedatectl set-timezone Asia/Shanghai
+		ntpdate ntp1.aliyun.com
+		systemctl disable firewalld
+		systemctl stop firewalld
+elif [ "$os" == '"Ubuntu"' ]; 
+then
+        echo "您的系统是"${os}"，开始进入脚本："
+		apt-get install -y ntp
+		service ntp restart
+		ufw disable
+fi
+
 
 pName=$(rpm -qa | grep docker)
 if [ $? -eq 0 ]
 then
         echo $xi;
 else
-		yum -y install ntpdate
-		timedatectl set-timezone Asia/Shanghai
-		ntpdate ntp1.aliyun.com
-		yum clean all
-		yum install docker-ce
-		wget https://download.docker.com/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
-		yum install -y  containerd.io-1.2.6-3.3.el7.x86_64.rpm
-		yum clean all
-		yum install docker-ce
-        curl -fsSL https://get.docker.com | bash
-        curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        chmod a+x /usr/local/bin/docker-compose
-        rm -rf `which dc`
-        ln -s /usr/local/bin/docker-compose /usr/bin/dc
+		curl -fsSL https://get.docker.com | bash
+		curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+		chmod a+x /usr/local/bin/docker-compose
+		rm -f `which dc`
+		ln -s /usr/local/bin/docker-compose /usr/bin/dc
+
+		systemctl start docker
+		service docker start
+		systemctl enable docker.service
+		systemctl status docker.service
 fi
 #pNamea=$(rpm -qa | grep git)
 #if [ $? -eq 0 ]
@@ -122,9 +137,11 @@ case $xuan in
 		service docker restart
 		dc up -d
 		;;
+	4)
+		yum install wget
+		wget -N --no-check-certificate "https://github.000060000.xyz/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
 esac
-systemctl stop firewalld.service
-ufw disable
+
 
 
 
