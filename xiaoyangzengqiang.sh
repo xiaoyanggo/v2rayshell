@@ -30,7 +30,7 @@ key='    "license_key": "LP+BAwEBB0xpY2Vuc2UB/4IAAQMBBERhdGEBCgABAVIB/4QAAQFTAf+
 os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [ "$os" == '"CentOS Linux"' ] ;
 then
-        echo "您的系统是"${os}"，开始进入脚本："
+        echo "您的系统是"${os}"，开始进入脚本：(10秒之后开始)"
         sleep 10;
         yum -y install ntpdate
 		timedatectl set-timezone Asia/Shanghai
@@ -39,7 +39,7 @@ then
 		systemctl stop firewalld
 elif [ "$os" == '"Ubuntu"' ]; 
 then
-        echo "您的系统是"${os}"，开始进入脚本："
+        echo "您的系统是"${os}"，开始进入脚本：(10秒之后开始)"
         sleep 10;
 		apt-get install -y ntp
 		service ntp restart
@@ -57,7 +57,6 @@ else
 		chmod a+x /usr/local/bin/docker-compose
 		rm -f `which dc`
 		ln -s /usr/local/bin/docker-compose /usr/bin/dc
-
 		systemctl start docker
 		service docker start
 		systemctl enable docker.service
