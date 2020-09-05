@@ -3,7 +3,7 @@
 red="\033[31m"
 black="\033[0m"
 main(){
-echo -e "${black}:————————————xy 工具箱————————————"
+echo -e "${black}————————————xy 工具箱————————————"
 echo -e "${red}1. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
 echo -e "${red}2. TCP模式${black}:(前端面板格式：你的IP或域名;10086;2;tcp;;)"
 echo -e "${red}3. CDN模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
@@ -11,7 +11,7 @@ echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
 echo -e "${red}5. 中转脚本安装${black}:(iptables,正常的端口转发使用)"
 echo -e "${red}6. 中转域名脚本安装${black}:(要使用此脚本请先使用5中转脚本中的安装iptables功能进行iptables的安装)"
 echo -e "${red}7. 退出脚本"
-echo -e "${black}:————————————————————————————————"
+echo -e "${black}————————————————————————————————"
 read -p "请选择对接模式(1,2,3,4,5,6,7)：" xuan
 }
 
