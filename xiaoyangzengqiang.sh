@@ -12,7 +12,8 @@ echo && echo -e " sspanel v2ray一键对接脚本 ${Red_font_prefix}[v${sh_ver}]
  ${Green_font_prefix}6.${Font_color_suffix} 中转域名脚本安装 (要使用此脚本请先使用5中转脚本中的安装iptables功能进行iptables的安装)
  ${Green_font_prefix}7.${Font_color_suffix} 退出脚本
 ————————————————————————————————" && echo
-read -p "请选择对接模式(1,2,3,4,5,6,7)：" xuan
+ #准备
+start(){
 xi=" "
 xi2=" "
 #网站地址
@@ -29,6 +30,8 @@ value="- CF_Key=790a5ab094267d77f740e17aab0f21646f625"
 #授权密钥
 key='    "license_key": "LP+BAwEBB0xpY2Vuc2UB/4IAAQMBBERhdGEBCgABAVIB/4QAAQFTAf+EAAAACv+DBQEC/4YAAAD/2f+CAW57Ikhvc3RNZDUiOiI2MzkxRkFDQzcyMTcyODMxOTY1QzM5MEJBNTExRDVDOCIsIkVuZCI6IjIwMjEtMDItMjZUMjI6Mzc6NTQuNjY1MTk2KzA4OjAwIiwiSXNXSE1DU0xpY2Vuc2UiOmZhbHNlfQExAhS09FXSdZhsZXPTdALlhBzbPfmFUdsVkGdDXDw5UUMr7UeBaFYkEd6uUbQ+ueLivQExAk9Z5c6cbuvtdIf/mEpN1Ju8mZj8LNplLm97rx1mV14loMwJPySUR5du8yItdX4bZwA=",'
 
+
+}
 #判断系统
 os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [ "$os" == '"CentOS Linux"' ] ;
@@ -85,8 +88,9 @@ while ; do
 	#statements
 
 case $xuan in
-	1)
+	1)	
 		#ws-tls模式
+		start
 		read -p "  2.CF上面解析的域名：" cf
 		cf1="- CERT_DOMAIN="$cf
 		cd /root/v2ray-poseidon/docker/sspanel/ws-tls/
@@ -110,6 +114,7 @@ case $xuan in
 		;;
 	2)
 		#tcp模式
+		start
 		read -p "  2.tcp端口：" port
 		port1='     - "'$port':'$port'"'
 		port2='    "port": '$port','
@@ -132,6 +137,7 @@ case $xuan in
 		;;
 	3)
 		#CDN模式
+		start
 		cd /root/v2ray-poseidon/docker/sspanel/ws
 		sed -i '/license_key/d' config.json
 		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
