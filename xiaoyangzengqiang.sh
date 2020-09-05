@@ -3,7 +3,8 @@
 red="\033[31m"
 black="\033[0m"
 main(){
-echo -e "${black}————————————xy 工具箱————————————"
+echo -e "${black}       			 ————————————xy 工具箱————————————"
+echo -e "${black}       ————————————对接适配centos7和Ubuntu16，其他系统待测试————————————"
 echo -e "${red}1. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
 echo -e "${red}2. TCP模式${black}:(前端面板格式：你的IP或域名;10086;2;tcp;;)"
 echo -e "${red}3. CDN模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
