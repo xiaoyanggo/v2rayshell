@@ -1,5 +1,5 @@
 #! /bin/bash
-
+main(){
 echo && echo -e " sspanel v2ray工具箱 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
         -- 工具箱 --
 
@@ -13,6 +13,7 @@ echo && echo -e " sspanel v2ray工具箱 ${Red_font_prefix}[v${sh_ver}]${Font_co
  ${Green_font_prefix}7.${Font_color_suffix} 退出脚本
 ————————————————————————————————" && echo
 read -p "请选择对接模式(1,2,3,4,5,6,7)：" xuan
+}
 #s输入参数
 start(){
 xi=" "
@@ -90,7 +91,7 @@ fi
 while :
 do
 	#statements
-
+main
 case $xuan in
 	1)
 		#ws-tls模式
@@ -180,6 +181,7 @@ case $xuan in
 		;;
 	*) 	
 		echo "您的选择错误，请使用(1,2,3,4,5,6,7)进行选择！"
+		break;
 		;;
 esac
 
