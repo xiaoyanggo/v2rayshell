@@ -14,24 +14,22 @@ echo && echo -e " sspanel v2ray一键对接脚本 ${Red_font_prefix}[v${sh_ver}]
 ————————————————————————————————" && echo
  #准备
 start(){
-xi=" "
-xi2=" "
-#网站地址
-domain='    "panelUrl": "http://poli23.icu/",'
-#mukey
-mukey='"panelKey": "xiaoyang",'
-#面板节点id
-read -p "  1.面板里添加完节点后生成的自增ID:" sid
-rid='"nodeId": '$sid','
-#cloudflare 邮箱
-email="- CF_Email=l2690329987@gmail.com"
-#cloudflare密钥
-value="- CF_Key=790a5ab094267d77f740e17aab0f21646f625"
-#授权密钥
-key='    "license_key": "LP+BAwEBB0xpY2Vuc2UB/4IAAQMBBERhdGEBCgABAVIB/4QAAQFTAf+EAAAACv+DBQEC/4YAAAD/2f+CAW57Ikhvc3RNZDUiOiI2MzkxRkFDQzcyMTcyODMxOTY1QzM5MEJBNTExRDVDOCIsIkVuZCI6IjIwMjEtMDItMjZUMjI6Mzc6NTQuNjY1MTk2KzA4OjAwIiwiSXNXSE1DU0xpY2Vuc2UiOmZhbHNlfQExAhS09FXSdZhsZXPTdALlhBzbPfmFUdsVkGdDXDw5UUMr7UeBaFYkEd6uUbQ+ueLivQExAk9Z5c6cbuvtdIf/mEpN1Ju8mZj8LNplLm97rx1mV14loMwJPySUR5du8yItdX4bZwA=",'
-
-
-}
+	xi=" "
+	xi2=" "
+	#网站地址
+	domain='    "panelUrl": "http://poli23.icu/",'
+	#mukey
+	mukey='"panelKey": "xiaoyang",'
+	#面板节点id
+	read -p "  1.面板里添加完节点后生成的自增ID:" sid
+	rid='"nodeId": '$sid','
+	#cloudflare 邮箱
+	email="- CF_Email=l2690329987@gmail.com"
+	#cloudflare密钥
+	value="- CF_Key=790a5ab094267d77f740e17aab0f21646f625"
+	#授权密钥
+	key='    "license_key": "LP+BAwEBB0xpY2Vuc2UB/4IAAQMBBERhdGEBCgABAVIB/4QAAQFTAf+EAAAACv+DBQEC/4YAAAD/2f+CAW57Ikhvc3RNZDUiOiI2MzkxRkFDQzcyMTcyODMxOTY1QzM5MEJBNTExRDVDOCIsIkVuZCI6IjIwMjEtMDItMjZUMjI6Mzc6NTQuNjY1MTk2KzA4OjAwIiwiSXNXSE1DU0xpY2Vuc2UiOmZhbHNlfQExAhS09FXSdZhsZXPTdALlhBzbPfmFUdsVkGdDXDw5UUMr7UeBaFYkEd6uUbQ+ueLivQExAk9Z5c6cbuvtdIf/mEpN1Ju8mZj8LNplLm97rx1mV14loMwJPySUR5du8yItdX4bZwA=",'
+    }
 #判断系统
 os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [ "$os" == '"CentOS Linux"' ] ;
@@ -51,6 +49,7 @@ then
 		service ntp restart
 		ufw disable
 fi
+
 
 
 pName=$(rpm -qa | grep docker)
@@ -84,7 +83,8 @@ fi
 
 
 
-while ; do
+while :
+do
 	#statements
 
 case $xuan in
