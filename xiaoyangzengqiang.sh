@@ -31,6 +31,7 @@ os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [ "$os" == '"CentOS Linux"' ] ;
 then
         echo "您的系统是"${os}"，开始进入脚本："
+        sleep 10;
         yum -y install ntpdate
 		timedatectl set-timezone Asia/Shanghai
 		ntpdate ntp1.aliyun.com
@@ -39,6 +40,7 @@ then
 elif [ "$os" == '"Ubuntu"' ]; 
 then
         echo "您的系统是"${os}"，开始进入脚本："
+        sleep 10;
 		apt-get install -y ntp
 		service ntp restart
 		ufw disable
@@ -59,7 +61,6 @@ else
 		systemctl start docker
 		service docker start
 		systemctl enable docker.service
-		systemctl status docker.service
 fi
 #pNamea=$(rpm -qa | grep git)
 #if [ $? -eq 0 ]
