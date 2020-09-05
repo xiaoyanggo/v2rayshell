@@ -1,15 +1,18 @@
 #! /bin/bash
 
 echo && echo -e " sspanel v2ray一键对接脚本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
-        -- 小杨 | 加油 --
+        -- 工具箱 --
 
 ————————————对接管理————————————
  ${Green_font_prefix}1.${Font_color_suffix} WS-TLS模式(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)
  ${Green_font_prefix}2.${Font_color_suffix} TCP模式(前端面板格式：你的IP或域名;10086;2;tcp;;)
  ${Green_font_prefix}3.${Font_color_suffix} CDN模式(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)
  ${Green_font_prefix}4.${Font_color_suffix} 加速脚本安装(推荐使用BBR2或BBRPlus)
+ ${Green_font_prefix}5.${Font_color_suffix} 中转脚本安装 (iptables,正常的端口转发使用)
+ ${Green_font_prefix}6.${Font_color_suffix} 中转域名脚本安装 (要使用此脚本请先使用5中转脚本中的安装iptables功能进行iptables的安装)
+ ${Green_font_prefix}7.${Font_color_suffix} 退出脚本
 ————————————————————————————————" && echo
-read -p "请选择对接模式(1,2,3,4)：" xuan
+read -p "请选择对接模式(1,2,3,4,5,6,7)：" xuan
 xi=" "
 xi2=" "
 #网站地址
@@ -78,6 +81,8 @@ fi
 
 
 
+while ; do
+	#statements
 
 case $xuan in
 	1)
@@ -99,8 +104,9 @@ case $xuan in
 		sed -i "27a \      $email" docker-compose.yml
 		sed -i "/-\ CERT_\DOMAIN/d" docker-compose.yml
 		sed -i "25a \      $cf1" docker-compose.yml
-		service docker restart
 		dc up -d
+		echo "恭喜您，安装成功了！"
+		break;
 		;;
 	2)
 		#tcp模式
@@ -120,8 +126,9 @@ case $xuan in
 		sed -i "21a \ $port2" config.json
 		sed -i '9d' docker-compose.yml
 		sed -i "8a \ $port1" docker-compose.yml
-		service docker restart
 		dc up -d
+		echo "恭喜您，安装成功了！"
+		break;
 		;;
 	3)
 		#CDN模式
@@ -136,13 +143,31 @@ case $xuan in
 		sed -i "4a \    $rid" config.json
 		service docker restart
 		dc up -d
+		echo "恭喜您，安装成功了！"
+		break;
 		;;
 	4)
 		yum install wget
 		wget -N --no-check-certificate "https://github.000060000.xyz/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+		break;
+		;;
+	5)
+		wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/iptables-pf.sh && chmod +x iptables-pf.sh && bash iptables-pf.sh
+		break;
+		;;
+	6)  
+		wget -qO natcfg.sh https://raw.githubusercontent.com/arloor/iptablesUtils/master/natcfg.sh && bash natcfg.sh
+		break;
+		;;
+	7)
+		exit;
+		;;
+	*) 	
+		echo "您的选择错误，请使用(1,2,3,4,5,6,7)进行选择！"
+		;;
 esac
 
-
+done
 
 
 
