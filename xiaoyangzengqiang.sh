@@ -1,7 +1,27 @@
 #! /bin/bash
 
+#判断系统
+os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+if [ "$os" == '"CentOS Linux"' ] ;
+then
+        echo "您的系统是"${os}"，开始进入脚本：(10秒之后开始)"
+        sleep 10;
+        yum -y install ntpdate
+		timedatectl set-timezone Asia/Shanghai
+		ntpdate ntp1.aliyun.com
+		systemctl disable firewalld
+		systemctl stop firewalld
+elif [ "$os" == '"Ubuntu"' ]; 
+then
+        echo "您的系统是"${os}"，开始进入脚本：(10秒之后开始)"
+        sleep 10;
+		apt-get install -y ntp
+		service ntp restart
+		ufw disable
+fi
+
 echo && echo -e " sspanel v2ray一键对接脚本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
-        -- 工具箱 --
+         -- 工具箱 --
 
 ————————————对接管理————————————
  ${Green_font_prefix}1.${Font_color_suffix} WS-TLS模式(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)
@@ -30,25 +50,7 @@ start(){
 	#授权密钥
 	key='    "license_key": "LP+BAwEBB0xpY2Vuc2UB/4IAAQMBBERhdGEBCgABAVIB/4QAAQFTAf+EAAAACv+DBQEC/4YAAAD/2f+CAW57Ikhvc3RNZDUiOiI2MzkxRkFDQzcyMTcyODMxOTY1QzM5MEJBNTExRDVDOCIsIkVuZCI6IjIwMjEtMDItMjZUMjI6Mzc6NTQuNjY1MTk2KzA4OjAwIiwiSXNXSE1DU0xpY2Vuc2UiOmZhbHNlfQExAhS09FXSdZhsZXPTdALlhBzbPfmFUdsVkGdDXDw5UUMr7UeBaFYkEd6uUbQ+ueLivQExAk9Z5c6cbuvtdIf/mEpN1Ju8mZj8LNplLm97rx1mV14loMwJPySUR5du8yItdX4bZwA=",'
     }
-#判断系统
-os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
-if [ "$os" == '"CentOS Linux"' ] ;
-then
-        echo "您的系统是"${os}"，开始进入脚本：(10秒之后开始)"
-        sleep 10;
-        yum -y install ntpdate
-		timedatectl set-timezone Asia/Shanghai
-		ntpdate ntp1.aliyun.com
-		systemctl disable firewalld
-		systemctl stop firewalld
-elif [ "$os" == '"Ubuntu"' ]; 
-then
-        echo "您的系统是"${os}"，开始进入脚本：(10秒之后开始)"
-        sleep 10;
-		apt-get install -y ntp
-		service ntp restart
-		ufw disable
-fi
+
 
 
 
@@ -168,9 +170,7 @@ case $xuan in
 	7)
 		exit;
 		;;
-	*) 	
-		echo "您的选择错误，请使用(1,2,3,4,5,6,7)进行选择！"
-		;;
+		
 esac
 
 done
