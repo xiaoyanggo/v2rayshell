@@ -10,6 +10,8 @@ echo && echo -e " sspanel v2ray一键对接脚本 ${Red_font_prefix}[v${sh_ver}]
 ————————————对接管理————————————
  ${Green_font_prefix}1${Font_color_suffix} TCP模式(前端面板格式：ip;12345;2;tcp;;server=域名)
  ${Green_font_prefix}除了1的随意数字.${Font_color_suffix} 加速脚本安装(推荐使用BBR2或BBRPlus)
+ 落地服务器IP;落地服务器监听端口;2;ws;;path=/xxx|server=转发服务器IP或域名|host=CDN域名|outside_port=转发服务器监听端口
+
 ————————————————————————————————" && echo
 read -p "请选择对接模式(1,2,3,4)：" xuan
 #网站地址
@@ -52,9 +54,9 @@ fi
 }
 
 conf(){
-        sed -i 's/webapi_url.*/${domain}/' /etc/soga/soga.conf
-        sed -i 's/webapi_mukey.*/${mukey}/' /etc/soga/soga.conf
-        sed -i 's/node_id.*/${rid}/' /etc/soga/soga.conf
+        sed -i 's/webapi_url.*/"$domain"/' /etc/soga/soga.conf
+        sed -i 's/webapi_mukey.*/"$mukey"/' /etc/soga/soga.conf
+        sed -i 's/node_id.*/"$rid"/' /etc/soga/soga.conf
 }
 
 case $xuan in
