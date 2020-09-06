@@ -54,9 +54,9 @@ fi
 }
 
 conf(){
-        sed -i "s/webapi_url.*/$domain/" /etc/soga/soga.conf
-        sed -i "s/webapi_mukey.*/$mukey/" /etc/soga/soga.conf
-        sed -i "s/node_id.*/$rid/" /etc/soga/soga.conf
+        sed -i "s/webapi_url.*/${domain}/" /etc/soga/soga.conf
+        sed -i "s/webapi_mukey.*/${mukey}/" /etc/soga/soga.conf
+        sed -i "s/node_id.*/${rid}/" /etc/soga/soga.conf
 }
 
 case $xuan in
