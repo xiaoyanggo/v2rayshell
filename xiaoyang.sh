@@ -15,7 +15,7 @@ echo && echo -e " sspanel v2ray一键对接脚本 ${Red_font_prefix}[v${sh_ver}]
 ————————————————————————————————" && echo
 read -p "请选择对接模式(1,2,3,4)：" xuan
 #网站地址
-domain='webapi_url=https://studycloud.today/'
+domain22="webapi_url=https://studycloud.today/"
 #mukey
 mukey='webapi_mukey=xiaoyang'
 #面板节点id
@@ -54,7 +54,7 @@ fi
 }
 
 conf(){
-        sed -i "s/webapi_url.*/${domain}/" /etc/soga/soga.conf
+        sed -i "s/webapi_url=.*/${domain22}/" /etc/soga/soga.conf
         sed -i "s/webapi_mukey.*/${mukey}/" /etc/soga/soga.conf
         sed -i "s/node_id.*/${rid}/" /etc/soga/soga.conf
 }
