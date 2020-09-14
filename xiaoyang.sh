@@ -63,7 +63,7 @@ case $xuan in
         1)
         os_pam
         conf
-        soga start
+        soga restart
         echo "安装完成"
         ;;
         *) 
