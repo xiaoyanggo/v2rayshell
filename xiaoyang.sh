@@ -13,9 +13,9 @@ echo && echo -e " sspanel v2ray一键对接脚本 ${Red_font_prefix}[v${sh_ver}]
  落地服务器IP;落地服务器监听端口;2;ws;;path=/xxx|server=转发服务器IP或域名|host=CDN域名|outside_port=转发服务器监听端口
 
 ————————————————————————————————" && echo
-read -p "请选择对接模式(1,2,3,4)：" xuan
+read -p "请选择对接模式(1)：" xuan
 #网站地址
-domain22="webapi_url=https://studycloud.today/"
+domain22="webapi_url=https://studycloud.today"
 #mukey
 mukey='webapi_mukey=xiaoyang'
 #面板节点id
